@@ -1,0 +1,149 @@
+.site-header {
+  background-color: rgba(0, 0, 0);
+/*     -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px); */
+}
+.site-header a {
+  color: #999;
+  transition: ease-in-out color .15s;
+}
+.site-header a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.error {
+  padding: 5px;
+  border: #777 dotted 1px;
+  margin-bottom: 15px;
+}
+
+.bt {
+  margin: 0.5%;
+}
+
+/*
+* Sidebar
+*/
+
+.sidebar {
+position: fixed;
+top: 0;
+bottom: 0;
+left: 0;
+z-index: 100; /* Behind the navbar */
+padding: 48px 0.5% 0; /* Height of navbar */
+box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar-header{
+color: rgb(0, 0, 0);
+font-weight: 500;
+font-size: 1.5em;
+padding-left: 5%;
+}
+
+.sidebar-sticky {
+position: relative;
+top: 0;
+height: calc(100vh - 48px);
+padding-top: .5rem;
+overflow-x: hidden;
+overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+.sidebar-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+}
+}
+
+.sidebar .nav-link {
+font-weight: 500;
+color: #333;
+}
+
+.sidebar .nav-link {
+font-weight: 500;
+color: #333;
+}
+
+.sidebar .nav-link.active {
+color: #007bff;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+color: inherit;
+}
+
+.sidebar-heading {
+font-size: .75rem;
+text-transform: uppercase;
+}
+
+
+
+a[data-toggle="collapse"] {
+position: relative;
+}
+
+.dropdown-toggle::after {
+display: block;
+position: absolute;
+top: 50%;
+right: 20px;
+transform: translateY(-50%);
+}
+
+.sidebar ul.components {
+padding: 0.5%;
+
+}
+
+.sidebar ul li a {
+padding: 1%;
+font-size: 1.05em;
+display: block;
+color: rgb(54, 131, 58)
+}
+
+.sidebar ul li.active > a, a[aria-expanded="true"] {
+color: rgb(0, 0, 0);
+
+}
+ul ul a {
+font-size: 0.9em !important;
+padding-left: 30px !important;
+}
+
+ul ul a:hover {
+font-size: 1em !important;
+padding-left: 30px !important;
+}
+
+
+.usernick {
+display: inline-block;
+font-weight: 400;
+color: #212529;
+text-align: center;
+vertical-align: middle;
+padding: .375rem .75rem;
+font-size: 1rem;
+}
+
+img {
+  display: inline-block;
+  margin-right: auto;
+  max-width:400px;
+}
+
+.reserror {
+  color: red;
+}
+
+.ressuccess {
+  color: green;
+}

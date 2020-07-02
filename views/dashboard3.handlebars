@@ -1,0 +1,91 @@
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar" id="sidebar">
+            <div class="sidebar-header">Доступные темы</div>
+            <div class="sidebar-sticky">
+                <ul class="list-unstyled components">
+                {{#each themes  }}
+                
+                    <li class="active">
+                        <a href="#otherSections{{this.id}}" data-toggle="collapse" >
+                            {{ name }} 
+                        </a>
+
+                    <ul class="collapse list-unstyled" id="otherSections{{this.id}}">
+                     {{#each this.types}}
+                     
+                        <li><a href="?theme={{this.id}}">{{ this.name }}</a>
+                        </li>
+                    {{/each}}
+                    </li>
+                    
+                </ul>
+                
+                {{/each}}
+                </ul>
+            </div>
+        </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"><div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2"></h1>
+          <div class="mr-2">
+              <span></span>
+            <span class="usernick">{{user.name}}</span>
+          </div>
+        </div>
+        <div>
+        </div>
+
+        {{#each result}}
+           <div>
+                <p>Задача №{{id}}</p>
+                <p class="result">{{result}}</p>
+                <p>{{{replaceImg description}}}</p>
+                <a href="#solutionSections{{this.id}}" class="resh" data-toggle="collapse" >
+                    Показать решение
+                </a>
+                <p class="active">
+                    <div class="collapse list-unstyled" id="solutionSections{{this.id}}">
+                    {{{replaceImg solution}}}
+                    </div>
+               </p>
+           </div>
+           <hr>
+        {{/each}} 
+    
+    </div> 
+</div>
+
+
+
+
+<script >
+$(document).ready(function () {
+    // toggle sidebar when button clicked
+    $('.sidebar-toggle').on('click', function () {
+        $('.sidebar').toggleClass('toggled');
+    });
+
+    // auto-expand submenu if an item is active
+    let active = $('.sidebar .active');
+
+    if (active.length && active.parent('.collapse').length) {
+        let parent = active.parent('.collapse');
+
+        parent.prev('a').attr('aria-expanded', true);
+        parent.addClass('show');
+    }
+
+    let result = $('.result')
+    
+    $(result).each( function(i) {
+     if($(this).text() == 'Решено неправильно'){
+        $(this).addClass('reserror')
+    } else {
+        $(this).addClass('ressuccess')
+    }
+  });
+    
+});
+</script>

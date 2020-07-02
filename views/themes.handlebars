@@ -1,0 +1,124 @@
+<section id="type_tasks" class="container">
+    <h2>Все темы</h2>
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-success btn-md bt" data-toggle="modal" data-target="#myModalAdd">Добавить тему</button>
+    </div>
+    <div>
+        <table class="table table-striped" id="mytable">
+            <thead>
+                <tr>
+                <th>Тема</th>
+                <th style='text-align:right'>Действие</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each themes}}
+                <tr>
+                <td>{{ name }}</td>
+                <td align='right'>
+                    <a href="javascript:void(0);" class="btn btn-sm btn-info edit" data-id="{{ id }}" data-name="{{ name }}">Edit</a>
+                    <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ id }}">Delete</a>
+                </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+     </div>
+
+         <!-- Modal Add Type-->
+      <form action="/admin/themes/add" method="post">
+        <div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Добавить тему</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body">
+
+               <div class="form-group">
+                   <input type="text" name="name" class="form-control" placeholder="Тема" required>
+               </div>
+
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-primary">Save</button>
+             </div>
+           </div>
+         </div>
+        </div>
+     </form>
+
+     <!-- Modal Delete Product-->
+      <form id="add-row-form" action="/admin/themes/delete" method="post">
+         <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                   <div class="modal-header">
+                                        <h5 class="modal-title" id="myModalLabel">Удаление типа</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                   </div>
+                   <div class="modal-body">
+                                                 <strong>Вы действительно хотите удалить эту тему?</strong>
+                   </div>
+                   <div class="modal-footer">
+                                            <input type="hidden" name="id" class="form-control id" required>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Delete</button>
+                   </div>
+                    </div>
+            </div>
+         </div>
+     </form>
+
+     <!-- Modal Update Product-->
+   <form action="/admin/themes/update" method="post">
+       <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Редактировать тему</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+             <div class="modal-body">
+              <div class="form-group">
+               <div class="form-group">
+                   <input type="text" name="name" class="form-control name" placeholder="Тип задания" required>
+               </div>
+             </div>
+            <div class="modal-footer">
+              <input type="hidden" name="id" class="id">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </div>
+        </div>
+       </div>
+  </form>
+
+<script>
+    $(document).ready(function(){
+            //showing data to edit modal
+          $('#mytable').on('click','.edit',function(){
+        let name = $(this).data('name');
+        let id = $(this).data('id');
+        $('#EditModal').modal('show');
+        $('.name').val(name);
+        $('.id').val(id);
+      });
+            //showing delete record modal
+            $('#mytable').on('click','.delete',function(){
+        var id = $(this).data('id');
+        $('#DeleteModal').modal('show');
+        $('.id').val(id);
+      });
+ 
+    });
+</script>
+
+</section>  
